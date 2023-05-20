@@ -1,6 +1,7 @@
 package id.com.jetbooks.components
 
 import android.graphics.drawable.Icon
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Button
@@ -27,7 +28,8 @@ fun ScrollToTopButton(
         modifier = modifier
             .shadow(elevation = 10.dp, shape = CircleShape)
             .clip(shape = CircleShape)
-            .size(55.dp),
+            .size(55.dp)
+            .padding(bottom = 20.dp),
         colors = ButtonDefaults.buttonColors(
             backgroundColor = Color.White,
             contentColor = MaterialTheme.colors.primary
