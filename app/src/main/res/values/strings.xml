@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">JetBooks</string>
+    <string name="scroll_to_top">Scroll ke Atas</string>
+    <string name="search_buku">Cari Buku Kesukaan Mu</string>
+</resources>
