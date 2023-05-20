@@ -1,4 +1,4 @@
-package id.com.jetbooks
+package id.com.jetbooks.ui.screen.home
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
@@ -9,7 +9,7 @@ import id.com.jetbooks.data.BookRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
-class JetBooksViewModel(private val bookRepository: BookRepository) : ViewModel() {
+class HomeViewModel(private val bookRepository: BookRepository) : ViewModel() {
     private val _groupedBooks = MutableStateFlow(
         bookRepository.getBooks()
             .sortedBy { it.name }
@@ -32,8 +32,8 @@ class ViewModelFactory(private val bookRepository: BookRepository) :
     ViewModelProvider.NewInstanceFactory() {
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if(modelClass.isAssignableFrom(JetBooksViewModel::class.java)){
-            return JetBooksViewModel(bookRepository) as T
+        if(modelClass.isAssignableFrom(HomeViewModel::class.java)){
+            return HomeViewModel(bookRepository) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
     }

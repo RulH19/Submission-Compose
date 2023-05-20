@@ -8,6 +8,7 @@ import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.SnackbarDefaults.backgroundColor
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.runtime.Composable
@@ -28,8 +29,7 @@ fun ScrollToTopButton(
         modifier = modifier
             .shadow(elevation = 10.dp, shape = CircleShape)
             .clip(shape = CircleShape)
-            .size(55.dp)
-            .padding(bottom = 20.dp),
+            .size(55.dp),
         colors = ButtonDefaults.buttonColors(
             backgroundColor = Color.White,
             contentColor = MaterialTheme.colors.primary
