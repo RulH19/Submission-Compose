@@ -15,7 +15,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import androidx.navigation.compose.rememberNavController
 import id.com.jetbooks.R
 import id.com.jetbooks.components.BottomBarItem
 

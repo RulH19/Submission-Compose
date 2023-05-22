@@ -29,7 +29,7 @@ fun BooksListItems(
 ) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
-        modifier = modifier.clickable {}
+        modifier = modifier
             .padding(bottom = 12.dp)
     ) {
         AsyncImage(

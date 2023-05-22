@@ -1,16 +1,15 @@
 package id.com.jetbooks.ui.screen.home
 
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -24,6 +23,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import id.com.jetbooks.components.BooksListItems
@@ -31,6 +31,7 @@ import id.com.jetbooks.components.CharacterHeader
 import id.com.jetbooks.components.ScrollToTopButton
 import id.com.jetbooks.components.SearchBar
 import id.com.jetbooks.data.BookRepository
+import id.com.jetbooks.ui.theme.JetBooksTheme
 import kotlinx.coroutines.launch
 
 
@@ -39,8 +40,8 @@ import kotlinx.coroutines.launch
 fun HomeScreen(
     modifier: Modifier = Modifier,
     bookViewModel: HomeViewModel = viewModel(factory = ViewModelFactory(BookRepository())),
-
-    ) {
+    navigatetoDetail: (String) -> Unit,
+) {
     val groupedBooks by bookViewModel.groupedBooks.collectAsState()
     val query by bookViewModel.query
     Box(modifier = modifier) {
@@ -60,18 +61,16 @@ fun HomeScreen(
                     modifier = Modifier.background(MaterialTheme.colors.primary)
                 )
             }
-            groupedBooks.forEach { (initial, heroes) ->
+            groupedBooks.forEach { (initial, books) ->
                 stickyHeader {
                     CharacterHeader(initial)
                 }
-                items(heroes, key = { it.id }) { book ->
+                items(books, key = { it.id }) { book ->
                     BooksListItems(
                         name = book.name,
                         photoUrl = book.photoUrl,
                         sinopsis = book.sinopsis,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .animateItemPlacement(tween(durationMillis = 300))
+                        modifier = Modifier.clickable { navigatetoDetail(book.id) }
                     )
                 }
 
@@ -94,4 +93,12 @@ fun HomeScreen(
         }
     }
 
+}
+
+@Preview(showBackground = true)
+@Composable
+fun HomeScreenPreview() {
+    JetBooksTheme {
+        HomeScreen(navigatetoDetail = {})
+    }
 }

@@ -8,12 +8,15 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import id.com.jetbooks.screen.BottomBar
 import id.com.jetbooks.screen.Screen
+import id.com.jetbooks.ui.screen.detail.DetailBook
 import id.com.jetbooks.ui.screen.favorite.FavoriteScreen
 import id.com.jetbooks.ui.screen.home.HomeScreen
 import id.com.jetbooks.ui.screen.profile.ProfileScreen
@@ -37,13 +40,23 @@ fun JetBooksApp(
             startDestination = Screen.Home.route,
             modifier = Modifier.padding(innerPadding)
         ) {
-            composable(Screen.Home.route){
-                HomeScreen()
+            composable(Screen.Home.route) {
+                HomeScreen(
+                    navigatetoDetail = { bookId ->
+                        navController.navigate(Screen.DetailBook.createRoute(bookId))
+                    }
+                )
             }
-            composable(Screen.Profile.route){
+            composable(
+                route = Screen.DetailBook.route
+            ) {
+                val id = it.arguments?.getString("bookId") ?: "1"
+                DetailBook(idBook = id)
+            }
+            composable(Screen.Profile.route) {
                 ProfileScreen()
             }
-            composable(Screen.Favorite.route){
+            composable(Screen.Favorite.route) {
                 FavoriteScreen()
             }
         }
