@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun CharacterHeader(
     char: Char,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Surface(
         color = MaterialTheme.colors.primary,
@@ -23,7 +23,7 @@ fun CharacterHeader(
     ) {
         Text(
             text = char.toString(),
-        fontWeight = FontWeight.Black,
+            fontWeight = FontWeight.Black,
             color = Color.White,
             textAlign = TextAlign.Center,
             modifier = Modifier
